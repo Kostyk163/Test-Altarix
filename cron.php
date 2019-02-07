@@ -9,6 +9,8 @@ print_r($result->getTaxiInfoResult);
 echo $client->__getLastResponse() . " ss " . $client->__getLastRequestHeaders();
 //print_r($response);
 
+$res = implode(" , ", $result->getTaxiInfoResult);
+
 $ok = 'OK';
 $fail = 'FAIL';
 $params = [
@@ -26,7 +28,7 @@ $params = [
 
 $str_params = implode(" , ", $params);
 
-if ($str_params == $client->__getLastResponse()){
+if ($str_params == $res){
     echo $ok;
 else {
         echo $fail;
