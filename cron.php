@@ -52,7 +52,7 @@ if ( !$link ) {
     echo 'Ошибка: ' . mysqli_connect_errno() . ':' . mysqli_connect_error();
 }
 
-$sql = "SELECT FROM users
+$sql = "SELECT * FROM users
         INSERT INTO users(id, time_request, time_response, time_vait, status, body_response)
         VALUES ($id, $time_request, $time_response, $time_vait, $status, $body_response)";
 if (mysqli_query($link, $sql)) {
