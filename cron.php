@@ -5,11 +5,12 @@ $url = "http://dev.soap-task.blackhole.marm.altarix.org/wsdl";
 $client = new SoapClient($url, array('trace' => 1));
 
 $result = $client->getTaxiInfo(array("regNum"=> "ЕМ333777"));
-print_r($result->getTaxiInfoResult);
+$resultate = $result->getTaxiInfoResult;
+print_r($resultate);
 echo $client->__getLastResponse() . " ss " . $client->__getLastRequestHeaders();
 //print_r($response);
 
-$res = implode(" , ", $result->getTaxiInfoResult);
+$res = implode(" , ", $resultate);
 
 $ok = 'OK';
 $fail = 'FAIL';
