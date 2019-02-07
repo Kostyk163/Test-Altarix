@@ -9,6 +9,8 @@ print_r($result->getTaxiInfoResult);
 echo $client->__getLastResponse() . " ss " . $client->__getLastRequestHeaders();
 //print_r($response);
 
+$ok = 'OK';
+$fail = 'FAIL';
 $params = [
     'licenseNum'  => '02651',
     'licenseDate' => '2011-08-08T00:00:00+00:00',
@@ -25,9 +27,9 @@ $params = [
 $str_params = implode(" , ", $params);
 
 if ($str_params == $client->__getLastResponse()){
-    echo "OK";
+    echo $ok;
 else {
-        echo "FAIL";
+        echo $fail;
     }
 }
 
