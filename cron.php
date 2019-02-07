@@ -30,9 +30,8 @@ $str_params = implode(" , ", $params);
 
 if ($str_params == $res){
     echo $ok;
-else {
+}else {
         echo $fail;
-    }
 }
 
 $id = '';
