@@ -9,6 +9,28 @@ print_r($result->getTaxiInfoResult);
 echo $client->__getLastResponse() . " ss " . $client->__getLastRequestHeaders();
 //print_r($response);
 
+$params = [
+    'licenseNum'  => '02651',
+    'licenseDate' => '2011-08-08T00:00:00+00:00',
+    'name'        => 'ООО "НЖТ-ВОСТОК"',
+    'ogrnNum'     => '1107746402246',
+    'ogrnDate'    => '2010-05-17T00:00:00+00:00',
+    'brand'       => 'FORD',
+    'model'       => 'FOCUS',
+    'regNum'      => 'ЕМ333777',
+    'year'        => '2011',
+    'blankNum'    => '002695',
+];
+
+$str_params = implode(" , ", $params);
+
+if ($str_params == $client->__getLastResponse()){
+    echo "OK";
+else {
+        echo "FAIL";
+    }
+}
+
 $id = '';
 $time_request = '';
 $time_response = '';
