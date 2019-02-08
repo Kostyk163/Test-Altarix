@@ -38,14 +38,9 @@ else {
 }
 
 $id            = is_integer($id);
-/*
 $time_request  = microtime(date("d.m.Y H:m:s"));
 $time_response = microtime(date("d.m.Y H:m:s"));
 $time_wait     = strtotime($time_response - $time_request) * 1000;
-*/
-$time_request  = date("d.m.Y H:m:s");
-$time_response = date("d.m.Y H:m:s");
-$time_wait     = $time_response - $time_request;
 $status        = '';
 $body_response = $client->__getLastResponse;
 
