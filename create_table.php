@@ -1,16 +1,16 @@
 <?php
-$root = "root";
+$root          = "root";
 $root_password = "";
-$host = "localhost";
+$host          = "localhost";
 
 $user = 'root';
 $pass = '';
-$db = "testaltarix";
+$db   = "testaltarix";
 
 try {
 $dbh = new PDO("mysql:dbname=$db;host=$host", $root, $root_password);
-    if( $dbh->exec("CREATE TABLE IF NOT EXISTS `users` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
+    if( $dbh->exec("CREATE TABLE IF NOT EXISTS `list` (
+                `id` int(11) NULL AUTO_INCREMENT,
                 `time_request` bigint NOT NULL,
                 `time_response` bigint NOT NULL,
                 `time_wait` bigint NOT NULL,
@@ -20,7 +20,7 @@ $dbh = new PDO("mysql:dbname=$db;host=$host", $root, $root_password);
                 )"))
             echo "Таблица создана";
         else
-            echo "таблица существует";
+            echo "Таблица существует";
 
 } catch(PDOException $e) {
     die("DB ERROR: " . $e->getMessage());
