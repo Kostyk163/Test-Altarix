@@ -1,11 +1,11 @@
 <?php
-$root = "root";
+$root          = "root";
 $root_password = "";
-$host = "localhost";
+$host          = "localhost";
 
 $user = 'root';
 $pass = '';
-$db = "testaltarix";
+$db   = "testaltarix";
 
 try {
     $dbh = new PDO("mysql:host=$host", $root, $root_password);
