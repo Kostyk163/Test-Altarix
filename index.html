@@ -8,30 +8,47 @@
 <body>
 
 <style>
-    div{
-        width:200;
-        height:400;
-        overflow:auto;
+    .Left{
+        float: left;
+        border: 2px solid black;
+        margin-right: 20px;
+        width: 200;
+        height: 400;
+        overflow: auto;
+    }
+    .Right{
+        float: left;
+        border: 2px solid black;
+        margin-left: 20px;
+        width: 200;
+        height: 400;
+        overflow: auto;
+    }
+    #footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
     }
 </style>
 
+<div class="Left">
 <p>Choose date: </p>
-<p><input type="date" name="calendar"
-          min="2018-01-01" max="">
-    <input type="date" name="calendar"
-           min="" max="2020-01-01"></p>
-
-<div>
-    <h2>Эшкере</h2>
-
-    <p>Time publication: </p>
-    <p><input type="datetime" name="created"></p>
-    <p><input type="submit"></p>
-
+<p>
+   <input type="date" name="calendar" min="2018-01-01" max="">
+   <input type="date" name="calendar" min="" max="2020-01-01">
+</p>
 </div>
-<div>
-    <h3>Эшкере</h3>
 
+<div class="Right">
+<form>
+    <p>Report</p>
+    <p><select name="list">
+        <option value="s1">List 1</option>
+        <option value="s2">List 2</option>
+        <option value="s3">List 3</option>
+    </select>
+        <input type="submit" value="Select"></p>
+</form>
 </div>
 
 <div id="footer">
