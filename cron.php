@@ -3,13 +3,15 @@
 $url = "http://dev.soap-task.blackhole.marm.altarix.org/wsdl";
 
 $time_request = microtime(TRUE);
-
+$body_response = "";
+$statusService = true;
 try {
     $client = new SoapClient($url, array('trace' => 1));
     $result = $client->getTaxiInfo(array("regNum" => "ЕМ333777"));
     $resultate = $result->getTaxiInfoResult;
 } catch (Exception $e) {
     echo 'Некорректный ответ: ', $e->getMessage();
+    $statusService = false;
 }
 
 $time_response = microtime(TRUE);
@@ -18,16 +20,16 @@ $time_response = microtime(TRUE);
 //print_r($response);
 
 $resultate = [
-    'licenseNum'  => $result->licrnseNum,
-    'licenseDate' => $result->licenseDate,
-    'name'        => $result->name,
-    'ogrnNum'     => $result->ogrnNum,
-    'ogrnDate'    => $result->ogrnDate,
-    'brand'       => $result->brand,
-    'model'       => $result->model,
-    'regNum'      => $result->regNum,
-    'year'        => $result->year,
-    'blankNum'    => $result->blankNum,
+    'licenseNum'  => $resultate->licenseNum,
+    'licenseDate' => $resultate->licenseDate,
+    'name'        => $resultate->name,
+    'ogrnNum'     => $resultate->ogrnNum,
+    'ogrnDate'    => $resultate->ogrnDate,
+    'brand'       => $resultate->brand,
+    'model'       => $resultate->model,
+    'regNum'      => $resultate->regNum,
+    'year'        => $resultate->year,
+    'blankNum'    => $resultate->blankNum,
 ];
 
 $original = [
@@ -46,18 +48,20 @@ $original = [
 $resultate_str = implode(" ", $resultate);
 $original_str = implode(" ", $original);
 
+
 if ($original_str == $resultate_str) {
     echo $status = "OK";
-}
-else {
+} else {
+    if($statusService) {
+        $body_response = $resultate_str;
+    } else {
+        $body_response = "Ошибка внешнего сервиса.";
+    }
     echo $status = "FAIL";
-
 }
 
-$id            = "NULL";
+$id            = NULL;
 $time_wait     = $time_response - $time_request;
-$body_response = $client->__getLastResponse;
-
 $time_request  = round ($time_request, 0);
 $time_response = round ($time_response, 0);
 
@@ -66,14 +70,12 @@ $user = 'root';
 $pass = '';
 $db   = "testaltarix";
 
-$link = mysqli_connect("$host" , "$user" , "$pass" , "$db");
-if ( !$link ) {
-    echo 'Ошибка: ' . mysqli_connect_errno() . ':' . mysqli_connect_error();
-}
-$sql = "INSERT INTO list(id, time_request, time_response, time_wait, status, body_response)
-        VALUES ($id, $time_request, $time_response, $time_wait, $status, $body_response)";
-if (mysqli_query($link, $sql)) {
-    echo "Запись добавлена";
+//var_dump(array($id, (int)$time_request, (int)$time_response, (string)$time_wait, (string)$status, (string)$body_response));
+
+$dbh = new PDO("mysql:dbname=$db;host=$host", $user, $pass);
+if( $dbh->exec("INSERT INTO `list` (`id`, `time_request`, `time_response`, `time_wait`, `status`, `body_response`) 
+VALUES (NULL, '${time_request}', '${time_response}', '${time_wait}', '${status}', '${body_response}');")){
+    echo "success insert";
 } else {
-    echo 'Ошибка: ' . $sql . '<br>' . mysqli_connect_error($link);
+    echo "error insert";
 }
