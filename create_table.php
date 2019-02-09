@@ -13,7 +13,7 @@ $dbh = new PDO("mysql:dbname=$db;host=$host", $root, $root_password);
                 `id` int(11) NULL AUTO_INCREMENT,
                 `time_request` bigint NOT NULL,
                 `time_response` bigint NOT NULL,
-                `time_wait` bigint NOT NULL,
+                `time_wait` varchar(30) NOT NULL,
                 `status` varchar(5) NOT NULL,
                 `body_response` text(2000),
                 PRIMARY KEY (`id`)
