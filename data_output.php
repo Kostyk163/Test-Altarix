@@ -9,9 +9,12 @@ $db   = "testaltarix";
 $sql = "";
 
 $dbh = new PDO("mysql:dbname=$db;host=$host", $root, $root_password);
-$dbh->exec($result = "SELECT `time_request` FROM `list`");
+$result = $mysqli->query("SELECT `time_request` FROM `list`")->fetchAll(PDO::FETCH_COLUMN);
 
-while($result = $answer->mysqli_fetch_array(MYSQLI_ASSOC)) {
+/*
+$answer = "";
+while($mysqli = $answer->fetch(PDO::FETCH_BOTH)) {
     $answer=$column['time_request'];
 }
+*/
 print_r($result);
