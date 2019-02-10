@@ -4,8 +4,10 @@
 
     <title>Сайт №1 в Мире!</title>
 </head>
-<h1>Календарь</h1>
+<h1>Check List</h1>
 <body>
+
+<?php include ('cron.php');?>
 
 <style>
     .Left{
@@ -33,21 +35,26 @@
 
 <div class="Left">
 <p>Choose date: </p>
+<table>
 <p>
    <input type="date" name="calendar" min="2018-01-01" max="">
    <input type="date" name="calendar" min="" max="2020-01-01">
+<tr>
+    <th>Date</th>
+    <th>Ping</th>
+    <th>Status</th>
+    <td><?php include_once "date_request.php";</td>
+    <td></td>
+    <td></td>
+</tr>
 </p>
+</table>
 </div>
 
 <div class="Right">
 <form>
-    <p>Report</p>
-    <p><select name="list">
-        <option value="s1">List 1</option>
-        <option value="s2">List 2</option>
-        <option value="s3">List 3</option>
-    </select>
-        <input type="submit" value="Select"></p>
+    <p>Last Check: <?php include 'cron.php'; echo $; ?></p>
+
 </form>
 </div>
 
